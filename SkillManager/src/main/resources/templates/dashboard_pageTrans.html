@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>技術者検索</title>
+<link th:href="@{/css/adminlte.css}" rel="stylesheet">
+<link th:href="@{/css/adminlte.min.css}" rel="stylesheet">
+<link th:href="@{/css/all.min.css}" rel="stylesheet">
+<link th:href="@{/css/select2.min.css}" rel="stylesheet">
+</head>
+<body>
+	<section class="content">
+		<div class="container-fluid">
+			<h1 class="text-center">業務用アプリ(仮題)</h1>
+			<form>
+			<div class="row" style="margin:auto;text-align:center;width:700px;">
+				<div class="col-md-10 offset-md-1">
+					<a href="#" id="search" class="btn btn-lg btn-default">プロジェクト一覧
+					</a>
+					<!-- <a href="#" id="search" class="btn btn-lg btn-default" onclick="engineerPageTransition(id);return false;">社員一覧
+					</a> -->
+					<a href="#" id="search" class="btn btn-lg btn-default" onclick="userPageTransition(id);return false;">社員一覧
+					</a>
+					<a href="#" id="skill" class="btn btn-lg btn-default">スキル一覧
+					</a>
+				</div>
+			</div>
+			</form>
+		</div>
+	</section>
+	<br>
+	<!-- jQuery -->
+	<script th:src="@{/js/common/common.js}"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<!-- Select2 -->
+	<script th:src="@{/js/select2.full.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/js/adminlte.min.js}"></script>
+	<script>
+        $(function () {
+            $(".select2").select2()
+        });
+    </script>
+
+</body>
+</html>

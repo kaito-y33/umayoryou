@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>技術者登録</title>
+<link th:href="@{/css/adminlte.css}" rel="stylesheet">
+<link th:href="@{/css/adminlte.min.css}" rel="stylesheet">
+<link th:href="@{/css/all.min.css}" rel="stylesheet">
+<link th:href="@{/css/select2.min.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダ部ここから -->
+    <section class="content">
+        <div class="container-fluid">
+            <h1 class="text-center">技術者登録</h1>
+        </div>
+    </section>
+    <!-- ヘッダ部ここまで -->
+
+    <br>
+
+    <!-- 入力部ここから -->
+    <form>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card card-success card-outline">
+                <div class="card-body">
+                    <br>
+                    <div class="form-group col-md-8">
+                        <label>技術者名:</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="技術者名を入力">
+                    </div>
+                    <br>
+                    <div class="form-group col-md-8">
+                        <label>言語:</label>
+                        <div class="custom-control custom-checkbox">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox1">
+                                        <label for="customCheckbox1" class="custom-control-label">Java</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox2">
+                                        <label for="customCheckbox2" class="custom-control-label">VB.NET</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox3">
+                                        <label for="customCheckbox3" class="custom-control-label">C#</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox4">
+                                        <label for="customCheckbox4" class="custom-control-label">C,C++</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox5">
+                                    <label for="customCheckbox5" class="custom-control-label">PHP</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label>DB:</label>
+                        <div class="custom-control custom-checkbox">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox6">
+                                        <label for="customCheckbox6" class="custom-control-label">Oracle</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox7">
+                                        <label for="customCheckbox7" class="custom-control-label">SQLServer</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox8">
+                                    <label for="customCheckbox8" class="custom-control-label">MySQL</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox9">
+                                    <label for="customCheckbox9" class="custom-control-label">PostgreSQL</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label>環境:</label>
+                        <div class="custom-control custom-checkbox">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox10">
+                                        <label for="customCheckbox10" class="custom-control-label">Windows</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox11">
+                                        <label for="customCheckbox11" class="custom-control-label">クラウド</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox12">
+                                    <label for="customCheckbox12" class="custom-control-label">Mac</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input class="custom-control-input" type="checkbox" id="customCheckbox13">
+                                    <label for="customCheckbox13" class="custom-control-label">Linux</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#" id="dashboard" class="btn btn-default float-right" onclick="pageTransition(id);return false;">戻る</a>
+                        <a href="#" class="btn btn-info float-right">登録</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <!-- 入力部ここまで -->
+    <!-- jQuery -->
+    <script th:src="@{/js/common/common.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <!-- Bootstrap 4 -->
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- Select2 -->
+    <script th:src="@{/js/select2.full.min.js}"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/js/adminlte.min.js}"></script>
+    <script th:src="@{/js/engineer/engineerRegister.js}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script>
+        $(function () {
+            $(".select2").select2()
+        });
+    </script>
+
+</body>
+</html>
