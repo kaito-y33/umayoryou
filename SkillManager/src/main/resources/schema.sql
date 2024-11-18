@@ -3,14 +3,6 @@ DROP TABLE IF EXISTS engineer_skill;
 DROP TABLE IF EXISTS skill;
 DROP TABLE IF EXISTS skill_category;
 DROP TABLE IF EXISTS engineer;
-DROP TABLE IF EXISTS user;
-
--- Recreate tables
--- User Table
-CREATE TABLE IF NOT EXISTS user (
-    user_id INT PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL
-);
 
 -- Engineer Table
 CREATE TABLE IF NOT EXISTS engineer (

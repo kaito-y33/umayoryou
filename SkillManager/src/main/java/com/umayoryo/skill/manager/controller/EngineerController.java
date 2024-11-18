@@ -4,40 +4,51 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.umayoryo.skill.manager.constants.ViewNames;
 import com.umayoryo.skill.manager.service.engineer.EngineerBean;
 import com.umayoryo.skill.manager.service.engineer.EngineerService;
 
 @Controller
+@RequestMapping("engineer")
 public class EngineerController {
 
     @Autowired
     private EngineerService engineerService;
 
     /**
-     * エンジニア検索画面の表示とエンジニアリストの取得.
+     * 技術者一覧 初期表示.
      * 
-     * @return エンジニアリストの表示ページ
+     * @param model
+     * @return 技術者一覧画面
      */
-    @GetMapping("/search")
-    public ModelAndView search() {
+    @GetMapping
+    public String index(Model model) {
+
+        return ViewNames.ENGINEER_LIST_VIEW;
+    }
+
+    /**
+     * 技術者一覧 検索機能.
+     * 
+     * @return 技術者一覧画面
+     */
+    @PostMapping("/search")
+    public String search(@RequestParam(name = "name", required = false) String name, Model model) {
 
         // DBからエンジニアのリストを取得
-        List<EngineerBean> engineerList = engineerService.getEngineerList();
-        
-        // ModelAndViewの初期化
-        ModelAndView mav = new ModelAndView();
-        
-        // 取得したエンジニアリストをモデルに追加
-        mav.addObject("engineerList", engineerList);
-        
-        // 表示するビューの名前を設定
-        mav.setViewName("engineerList");
+        List<EngineerBean> engineers = engineerService.searchEngineers(name);
 
-        return mav;
+        // 取得したエンジニアリストをモデルに追加
+        model.addAttribute("engineers", engineers);
+
+        return ViewNames.ENGINEER_LIST_VIEW;
     }
 
     /**
