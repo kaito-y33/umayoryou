@@ -7,13 +7,13 @@ import lombok.Data;
  */
 @Data
 public class EngineerBean {
-    
+
     /** エンジニアID. */
-    private int engineerId;
-    
+    private long engineerId;
+
     /**エンジニア名. */
     private String engineerName;
-    
+
     /** エンジニアスキル名. */
     private String skillName;
 }

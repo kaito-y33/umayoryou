@@ -2,7 +2,6 @@ package com.umayoryo.skill.manager.service.engineer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import jakarta.persistence.criteria.Predicate;
@@ -21,11 +20,11 @@ public class EngineerServiceImpl implements EngineerService {
     private EngineerRepository engineerRepository;
 
     /**
-     * 技術者情報一覧を取得.
-     * 
-     * @param name 技術者名
-     * @return 技術者情報一覧
-     */
+    * 技術者情報一覧を取得.
+    * 
+    * @param name 技術者名
+    * @return 技術者情報一覧
+    */
     @Override
     public List<EngineerBean> searchEngineers(String name) {
         List<EngineerEntity> entities = engineerRepository.findAll((root, query, criteriaBuilder) -> {
@@ -50,9 +49,6 @@ public class EngineerServiceImpl implements EngineerService {
         EngineerBean bean = new EngineerBean();
         bean.setEngineerId(entity.getEngineerId());
         bean.setEngineerName(entity.getEngineerName());
-
-        Optional.ofNullable(entity.getEngineerSkillList())
-                .ifPresent(skillList -> skillList.forEach(skill -> bean.setSkillName(skill.getSkill().getSkillName())));
 
         return bean;
     }

@@ -20,7 +20,7 @@ INSERT INTO project_engineers (project_id, engineer_id) VALUES
 (3, 1); -- John Doe is assigned to Project Gamma
 
 -- ENGINEER_SKILLS テーブルにデータ挿入
-INSERT INTO engineer_skills (engineer_id) VALUES
+INSERT INTO engineer_skill (engineer_id) VALUES
 (1), -- John Doe
 (2), -- Jane Smith
 (3), -- Alice Johnson
