@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout::layout(~{::body/content()})}">
+
+<body id="main">
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">プロジェクト一覧</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Project</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">検索欄</h3>
+							</div>
+							<form th:action="@{/project/search}" method="post">
+								<div class="card-body">
+									<div class="form-group col-6">
+										<label for="">プロジェクト名</label>
+										<input type="text" th:value="${param.name}" class="w-100 form-control"
+											name="name" id="name" placeholder="プロジェクト名を入力してください">
+									</div>
+								</div>
+								<div class="card-footer">
+									<button type="submit" class="btn btn-primary float-right">検索</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+				<div th:if="${not #lists.isEmpty(projects)}">
+					<br>
+					<br>
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h4 class="m-0">検索結果</h1>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid purple;">
+
+					<!-- ユーザ一覧テーブル -->
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>プロジェクト名</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="project: ${projects}">
+										<td th:text="${project.projectId}"></td>
+										<td th:text="${project.projectName}"></td>
+										<td class="text-center">
+											<button type="button" class="btn btn-primary btn-sm">編集</button>
+											<button type="button" class="btn btn-danger btn-sm">削除</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

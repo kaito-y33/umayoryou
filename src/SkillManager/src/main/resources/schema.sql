@@ -1,33 +1,84 @@
--- Drop tables if they exist
-DROP TABLE IF EXISTS engineer_skill;
-DROP TABLE IF EXISTS skill;
-DROP TABLE IF EXISTS skill_category;
+-- テーブルを削除
+DROP TABLE IF EXISTS language_skill;
+DROP TABLE IF EXISTS tool_skill;
+DROP TABLE IF EXISTS language;
+DROP TABLE IF EXISTS tool;
+DROP TABLE IF EXISTS engineer_skills;
+DROP TABLE IF EXISTS project_engineers;
+DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS engineer;
 
 -- Engineer Table
 CREATE TABLE IF NOT EXISTS engineer (
-    engineer_id INT PRIMARY KEY,
-    engineer_name VARCHAR(255) NOT NULL
+    engineer_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    engineer_name VARCHAR(255) NOT NULL,
+    position VARCHAR(100)
 );
 
--- SkillCategory Table
-CREATE TABLE IF NOT EXISTS skill_category (
-    skill_category_id INT PRIMARY KEY
+CREATE TABLE IF NOT EXISTS project (
+    project_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    project_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- Skill Table
-CREATE TABLE IF NOT EXISTS skill (
-    skill_id INT PRIMARY KEY,
-    skill_category_id INT,
-    skill_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (skill_category_id) REFERENCES skill_category(skill_category_id)
+-- PROJECT_ENGINEERS テーブル
+CREATE TABLE IF NOT EXISTS  project_engineers (
+    project_id BIGINT,
+    engineer_id BIGINT,
+    PRIMARY KEY (project_id, engineer_id),
+    FOREIGN KEY (project_id) REFERENCES project (project_id),
+    FOREIGN KEY (engineer_id) REFERENCES engineer (engineer_id)
 );
 
--- EngineerSkill Table
-CREATE TABLE IF NOT EXISTS engineer_skill (
-    engineer_id INT,
-    skill_id INT,
-    PRIMARY KEY (engineer_id, skill_id),
-    FOREIGN KEY (engineer_id) REFERENCES engineer(engineer_id),
-    FOREIGN KEY (skill_id) REFERENCES skill(skill_id)
+-- ENGINEER_SKILLS テーブル
+CREATE TABLE IF NOT EXISTS  engineer_skills (
+    engineer_skill_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    engineer_id BIGINT,
+    FOREIGN KEY (engineer_id) REFERENCES engineer (engineer_id)
 );
+
+-- LANGUAGE テーブル
+CREATE TABLE IF NOT EXISTS  language (
+    language_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    language_name VARCHAR(255) UNIQUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- LANGUAGE_SKILL テーブル
+CREATE TABLE IF NOT EXISTS  language_skill (
+    language_skill_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    engineer_skill_id BIGINT,
+    language_id BIGINT,
+    level INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (engineer_skill_id) REFERENCES engineer_skills (engineer_skill_id),
+    FOREIGN KEY (language_id) REFERENCES language (language_id)
+);
+
+-- TOOL テーブル
+CREATE TABLE IF NOT EXISTS  tool (
+    tool_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tool_name VARCHAR(255) UNIQUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- TOOL_SKILL テーブル
+CREATE TABLE IF NOT EXISTS  tool_skill (
+    tool_skill_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    engineer_skill_id BIGINT,
+    tool_id BIGINT,
+    level INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (engineer_skill_id) REFERENCES engineer_skills (engineer_skill_id),
+    FOREIGN KEY (tool_id) REFERENCES tool (tool_id)
+);
+
