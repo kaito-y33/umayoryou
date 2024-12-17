@@ -13,7 +13,7 @@ import lombok.Data;
  * エンジニアが持つ特定のスキルに関する情報を管理します。
  */
 @Entity
-@Table(name="skill")
+@Table(name = "skill")
 @Data
 public class SkillEntity {
 
@@ -21,11 +21,11 @@ public class SkillEntity {
     @Id
     @Column(name = "skill_id")
     private int skillId;
-    
+
     /** スキルカテゴリID. */
     @Column(name = "skill_category_id")
     private int skillCategoryId;
-    
+
     /** スキル名. */
     @Column(name = "skill_name")
     private String skillName;
