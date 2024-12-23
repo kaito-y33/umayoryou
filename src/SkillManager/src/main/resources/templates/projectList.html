@@ -39,7 +39,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div th:if="${not #lists.isEmpty(projects)}">
 					<br>
 					<br>
@@ -74,6 +74,16 @@
 							</table>
 						</div>
 					</div>
+					<br>
+					<br>
+					<a class="btn btn-primary" href="/project_regist">
+						新規登録
+					</a>
+				</div>
+				<div th:if="${#lists.isEmpty(projects)}">
+					<a class="btn btn-primary float-right" href="/project/regist">
+						新規登録
+					</a>
 				</div>
 			</div>
 		</div>

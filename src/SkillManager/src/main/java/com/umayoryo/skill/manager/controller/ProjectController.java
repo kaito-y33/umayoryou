@@ -41,4 +41,15 @@ public class ProjectController {
 		
 		return ViewNames.PROJECT_LIST_VIEW;
 	}
+	
+	/**
+	 * プロジェクト新規登録画面 初期表示
+	 * @param model model
+	 * @return プロジェクト登録新規画面
+	 */
+	@GetMapping("/regist")
+	public String regist(Model model) {
+	    
+	    return ViewNames.PROJECT_REGIST_VIEW;
+	}
 }

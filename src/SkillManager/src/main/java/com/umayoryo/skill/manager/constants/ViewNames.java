@@ -10,4 +10,7 @@ public class ViewNames {
     
     /** プロジェクト一覧画面. */
     public static final String PROJECT_LIST_VIEW = "projectList";
+    
+    /** プロジェクト新規登録画面. */
+    public static final String PROJECT_REGIST_VIEW = "project_regist";
 }
