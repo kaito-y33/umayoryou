@@ -1,6 +1,7 @@
 package com.umayoryo.skill.manager.service.project;
 
-import java.time.LocalDate;
+import java.sql.Time;
+import java.util.Date;
 
 import com.umayoryo.skill.manager.common.enums.ProjectStatus;
 
@@ -15,13 +16,17 @@ public class ProjectBean {
 	
 	private String projectName;
 	
-	private String projectDescription;
+	private String description;
 	
-	private LocalDate projectStartDate;
+	private Date startDate;
 	
-	private LocalDate projectEndDate;
+	private Date endDate;
 	
-	private ProjectStatus projectStatus;
+	private Time workingStartTime;
+	
+	private Time workingEndTime;
+	
+	private ProjectStatus status;
 	
 //	private EngineerEntity projectManager;
 //	

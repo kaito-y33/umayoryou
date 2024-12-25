@@ -1,0 +1,110 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout::layout(~{::body/content()})}">
+
+<body id="main">
+	<div class="content-wrapper">
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">プロジェクト入力内容確認</h1>
+					</div><!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active">Project</li>
+						</ol>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+		</div>
+
+		<div class="content">
+			<div class="container form-container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">
+									入力内容
+								</h3>
+							</div>
+							<form action="#" th:action="@{/project/store}" th:object="${projectForm}" method="post">
+								<div class="card-body">
+									<div class="form-group">
+										<label for="projectName" class="form-label">
+											プロジェクト名
+										</label>
+										<input type="text" th:field="*{projectName}" class="form-control" readonly>
+									</div>
+									<div class="form-group">
+										<label for="description" class="form-label">
+											説明
+										</label>
+										<input type="text" th:field="*{description}" class="form-control" readonly>
+									</div>
+									<div class="form-group">
+										<label for="period" class="form-label">
+											参画期間
+										</label>
+										<div class="form-inline">
+											<input type="date" th:field="*{startDate}" class="form-control col-3"
+												readonly>
+											<span class="ms-2">~</span>
+											<input type="date" th:field="*{endDate}" class="form-control col-3 ms-2"
+												readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="workingTime" class="form-label">
+											勤務時間
+										</label>
+										<div class="form-inline">
+											<input type="time" th:field="*{workingStartTime}" class="form-control col-3"
+												readonly>
+											<span class="ms-2">~</span>
+											<input type="time" th:field="*{workingEndTime}" class="form-control col-3"
+												readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-label">
+											稼働状態
+										</label>
+										<select name="status" th:field="*{status}" class="form-control col-3" readonly>
+											<option th:value="${projectForm.status.name()}"
+												th:text="${projectForm.status.viewName}"></option>
+										</select>
+									</div>
+									<!-- <div class="form-group">
+										<label for="member">
+											プロジェクトメンバ
+										</label>
+										<input type="text" name="member" id="member" class="form-control"
+											placeholder="プロジェクトメンバを入力してください。">
+									</div> -->
+									<!-- <div class="form-group">
+										<label for="workHours">
+											勤務時間
+										</label>
+										<div class="form-inline">
+											<input type="time" name="workHoursFrom" id="workHoursFrom"
+												class="form-control col-3">
+											<span class="ms-2">~</span>
+											<input type="time" name="workHoursTo" id="workHoursTo"
+												class="form-control col-3 ms-2">
+										</div>
+									</div> -->
+								</div>
+								<div class="card-footer">
+									<button type="submit" class="btn btn-primary float-right">
+										保存
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+</body>
+
+</html>

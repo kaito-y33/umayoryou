@@ -6,10 +6,10 @@ INSERT INTO engineer (engineer_name, position) VALUES
 ('Bob Brown', 'Engineer');
 
 -- PROJECT テーブルにデータ挿入
-INSERT INTO project (project_name, description, start_date, end_date, status) VALUES
-('Project Alpha', 'This is the description for Project Alpha.', '2024-01-01', '2024-06-30', 'ACTIVE'),
-('Project Beta', 'This is the description for Project Beta.', '2024-03-01', '2024-12-31', 'ACTIVE'),
-('Project Gamma', 'This is the description for Project Gamma.', '2024-07-01', '2025-01-31', 'COMPLETED');
+INSERT INTO project (project_name, description, start_date, end_date, working_start_time, working_end_time, status) VALUES
+('Project Alpha', 'This is the description for Project Alpha.', '2024-01-01', '2024-06-30', '09:00:00', '18:00:00', 'ACTIVE'),
+('Project Beta', 'This is the description for Project Beta.', '2024-03-01', '2024-12-31', '09:00:00', '18:00:00', 'ACTIVE'),
+('Project Gamma', 'This is the description for Project Gamma.', '2024-07-01', '2025-01-31', '09:00:00', '18:00:00', 'COMPLETED');
 
 -- PROJECT_ENGINEERS テーブルにデータ挿入
 INSERT INTO project_engineers (project_id, engineer_id) VALUES

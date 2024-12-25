@@ -1,6 +1,7 @@
 package com.umayoryo.skill.manager.persistence.project.entity;
 
-import java.time.LocalDate;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -30,34 +31,43 @@ import lombok.Data;
 @Data
 public class ProjectEntity {
 
-	/** プロジェクトID. */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "project_id")
-	private Long projectId;
+    /** プロジェクトID. */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "project_id")
+    private Long projectId;
 
-	/** プロジェクト名. */
-	@Column(name = "project_name")
-	private String projectName;
+    /** プロジェクト名. */
+    @Column(name = "project_name")
+    private String projectName;
 
-	/** プロジェクトの説明. */
-	@Column(name = "description")
-	private String description;
+    /** プロジェクトの説明. */
+    @Column(name = "description")
+    private String description;
 
-	/** プロジェクト開始日. */
-	@Column(name = "start_date")
-	private LocalDate startDate;
+    /** プロジェクト開始日. */
+    @Column(name = "start_date")
+    private Date startDate;
 
-	/** プロジェクト終了日. */
-	@Column(name = "end_date")
-	private LocalDate endDate;
+    /** プロジェクト終了日. */
+    @Column(name = "end_date")
+    private Date endDate;
 
-	/** プロジェクトの状態(進行中, 完了, 中止など). */
-	@Enumerated(EnumType.STRING)
-	private ProjectStatus status;
+    /** プロジェクト勤務開始時間. */
+    @Column(name = "working_start_time")
+    private Time workingStartTime;
 
-	/** プロジェクトメンバー情報一覧. */
-	@ManyToMany
-	@JoinTable(name = "project_members", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "engineer_id"))
-	private List<EngineerEntity> members;
+    /** プロジェクト勤務終了時間. */
+    @Column(name = "working_end_time")
+    private Time workingEndTime;
+
+    /** プロジェクトの状態(進行中, 完了, 中止など). */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private ProjectStatus status;
+
+    /** プロジェクトメンバー情報一覧. */
+    @ManyToMany
+    @JoinTable(name = "project_members", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "engineer_id"))
+    private List<EngineerEntity> members;
 }
