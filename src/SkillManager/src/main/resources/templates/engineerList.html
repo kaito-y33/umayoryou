@@ -28,11 +28,71 @@
 								<h3 class="card-title">検索欄</h3>
 							</div>
 							<form th:action="@{/engineer/search}" method="post">
-								<div class="card-body">
+								<div class="card-body form-inline">
 									<div class="form-group col-6">
-										<label for="">技術者名</label>
-										<input type="text" th:value="${param.name}" class="w-100 form-control" name="name" id="name"
-											placeholder="技術者名を入力してください">
+										<label for="">所属</label>
+										<select class="form-control col-12">
+											<option>指定なし</option>
+											<option>金沢</option>
+											<option>東京</option>
+											<option>大阪</option>
+										</select>
+									</div>
+									<div class="form-group col-6">
+										<label for="">部署</label>
+										<select class="form-control col-12">
+											<option>指定なし</option>
+											<option>システム部</option>
+											<option>営業部</option>
+										</select>
+									</div>
+								</div>
+								<div class="card-body form-inline">
+									<div class="form-group col-6">
+										<label for="">社員名</label>
+										<input type="text" th:value="${param.engineerName}" class="w-100 form-control" name="engineerName" id="engineerName"
+											placeholder="社員名を入力してください">
+									</div>
+									<div class="form-group col-6">
+										<label for="">プロジェクト名</label>
+										<input type="text" th:value="${param.projectName}" class="w-100 form-control" name="projectName" id="projectName"
+											placeholder="プロジェクト名を入力してください">
+									</div>
+								</div>
+								<div class="card-body form-inline">
+									<div class="form-group col-6">
+										<label for="">プログラミング言語経験</label>
+										<select class="form-control col-12" name="language">
+											<option th:value="0">指定なし</option>
+											<option th:each="language: ${languages}" th:value="${language.languageId}" th:text="${language.languageName}"></option>
+										</select>
+									</div>
+									<div class="form-group col-6">
+										<label for="">ツール経験</label>
+										<select class="form-control col-12" name="tool">
+											<option th:value="0">指定なし</option>
+											<option th:each="tool: ${tools}" th:value="${tool.toolId}" th:text="${tool.toolName}"></option>
+										</select>
+									</div>
+								</div>
+								<div class="card-body form-inline">
+									<div class="form-group col-6">
+										<label for="">業務経験年数</label>
+										<select class="form-control col-12">
+											<option>指定なし</option>
+											<option>1～3年</option>
+											<option>3～5年</option>
+											<option>5年～</option>
+										</select>
+									</div>
+									<div class="form-group col-6">
+										<label for="">開発パート経験</label>
+										<select class="form-control col-12" name="role">
+											<option th:value="0">指定なし</option>
+											<option th:value="1">プログラマ</option>
+											<option th:value="2">システムエンジニア</option>
+											<option th:value="3">リーダー</option>
+										</select>
 									</div>
 								</div>
 								<div class="card-footer">

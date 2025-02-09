@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.umayoryo.skill.manager.constants.PullDowns;
 import com.umayoryo.skill.manager.constants.ViewNames;
 import com.umayoryo.skill.manager.service.engineer.EngineerBean;
 import com.umayoryo.skill.manager.service.engineer.EngineerService;
+import com.umayoryo.skill.manager.service.language.LanguageBean;
+import com.umayoryo.skill.manager.service.tool.ToolBean;
 
 @Controller
 @RequestMapping("engineer")
@@ -21,6 +24,8 @@ public class EngineerController {
 
     @Autowired
     private EngineerService engineerService;
+    @Autowired 
+    private PullDowns pullDowns;
 
     /**
      * 技術者一覧 初期表示.
@@ -30,7 +35,14 @@ public class EngineerController {
      */
     @GetMapping
     public String index(Model model) {
+        // ここからプルダウンの中身
+        List<LanguageBean> languages = pullDowns.getLanguages(); // プログラミング言語経験
+        List<ToolBean> tools = pullDowns.getTools(); // ツール経験
+        // ここまでプルダウンの中身
 
+        // プルダウンの内容をモデルに追加
+        model.addAttribute("languages", languages);
+        model.addAttribute("tools", tools);
         return ViewNames.ENGINEER_LIST_VIEW;
     }
 
@@ -40,14 +52,24 @@ public class EngineerController {
      * @return 技術者一覧画面
      */
     @PostMapping("/search")
-    public String search(@RequestParam(name = "name", required = false) String name, Model model) {
+    public String search(@RequestParam(name = "engineerName", required = false) String engineerName,
+                         @RequestParam(name = "projectName" , required = false) String projectName,
+                         @RequestParam(name = "language"    , required = false) String language,
+                         @RequestParam(name = "tool"        , required = false) String tool,
+                         @RequestParam(name = "role"        , required = false) String role, Model model) {
 
         // DBからエンジニアのリストを取得
-        List<EngineerBean> engineers = engineerService.searchEngineers(name);
+        List<EngineerBean> engineers = engineerService.searchEngineers(engineerName);
+        // ここからプルダウンの中身
+        List<LanguageBean> languages = pullDowns.getLanguages(); // プログラミング言語経験
+        List<ToolBean> tools = pullDowns.getTools(); // ツール経験
+        // ここまでプルダウンの中身
 
         // 取得したエンジニアリストをモデルに追加
         model.addAttribute("engineers", engineers);
-
+        // プルダウンの内容をモデルに追加
+        model.addAttribute("languages", languages);
+        model.addAttribute("tools", tools);
         return ViewNames.ENGINEER_LIST_VIEW;
     }
 
