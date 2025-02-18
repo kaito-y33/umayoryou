@@ -1,0 +1,21 @@
+<div id="engineerModal" class="modal" style="display: none;" th:fragment="engineerModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>エンジニア選択</h3>
+            <button type="button" onclick="closeEngineerModal()">x</button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li th:each="engineer : ${engineers}">
+                    <input type="checkbox" th:id="'engineer_' + ${engineer.engineerId}"
+                        th:value="${engineer.engineerId}" th:data-name="${engineer.engineerName}"
+                        onclick="updateEngineerSelection(this)">
+                    <label th:for="'enginner_' + ${engineer.engineerId}" th:text="${engineer.engineerName}"></label>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" onclick="confirmEngineerSelection()">確定</button>
+        </div>
+    </div>
+</div>

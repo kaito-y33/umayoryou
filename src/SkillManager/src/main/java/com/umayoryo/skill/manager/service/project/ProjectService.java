@@ -4,7 +4,26 @@ import java.util.List;
 
 public interface ProjectService {
 
-	public List<ProjectBean> searchProjects(ProjectSearchCriteria criteria);
-	
-	public void registerProject(ProjectBean bean);
+    /**
+     * プロジェクト情報を検索する.
+     * 
+     * @param projectName プロジェクト名
+     * @return プロジェクト情報一覧
+     */
+    public List<ProjectBean> searchProjects(String projectName);
+
+    /**
+     * プロジェクト情報を取得する.
+     * 
+     * @param projectId プロジェクトID
+     * @return プロジェクト情報
+     */
+    public ProjectBean getProject(Long projectId);
+
+    /**
+     * プロジェクト情報を登録する.
+     * 
+     * @param bean プロジェクトBean
+     */
+    public void registerProject(ProjectBean bean);
 }

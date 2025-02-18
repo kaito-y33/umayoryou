@@ -6,7 +6,7 @@
 			<div class="container-fluid">
 				<div class="row mb-2">
 					<div class="col-sm-6">
-						<h1 class="m-0">プロジェクト入力内容確認</h1>
+						<h1 class="m-0">プロジェクト詳細</h1>
 					</div><!-- /.col -->
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-sm-right">
@@ -25,10 +25,10 @@
 						<div class="card card-primary">
 							<div class="card-header">
 								<h3 class="card-title">
-									入力内容
+									プロジェクト情報
 								</h3>
 							</div>
-							<form action="#" th:action="@{/project/store}" th:object="${projectForm}" method="post">
+							<form action="#" th:action="@{/project/edit}" th:object="${projectForm}" method="post">
 								<input type="hidden" name="projectId" id="projectId" th:field="*{projectId}">
 								<div class="card-body">
 									<div class="form-group">
@@ -81,21 +81,16 @@
 											メンバー
 										</label>
 										<input type="text" name="selectedEngineerNames" id="selectedEngineerNames"
-											th:value="${engineerNames}" class="form-control" disabled>
+											th:field="*{memberNames}" class="form-control" readonly>
 										<input type="hidden" id="selectedEngineers" th:field="*{members}">
 									</div>
 								</div>
 								<div class="card-footer">
+									<a href="/project" class="btn btn-primary float-left">戻る</a>
 									<button type="submit" class="btn btn-primary float-right">
-										保存
+										編集
 									</button>
 								</div>
-							</form>
-							<form th:action="@{/project/back}" method="post">
-								<input type="hidden" name="previousPage" th:value="${previousPage}">
-								<button type="submit" class="btn btn-secondary float-left">
-									戻る
-								</button>
 							</form>
 						</div>
 					</div>

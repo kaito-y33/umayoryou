@@ -1,7 +1,7 @@
 package com.umayoryo.skill.manager.persistence.project.entity;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -47,19 +47,19 @@ public class ProjectEntity {
 
     /** プロジェクト開始日. */
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     /** プロジェクト終了日. */
     @Column(name = "end_date")
-    private Date endDate;
+    private LocalDate endDate;
 
     /** プロジェクト勤務開始時間. */
     @Column(name = "working_start_time")
-    private Time workingStartTime;
+    private LocalTime workingStartTime;
 
     /** プロジェクト勤務終了時間. */
     @Column(name = "working_end_time")
-    private Time workingEndTime;
+    private LocalTime workingEndTime;
 
     /** プロジェクトの状態(進行中, 完了, 中止など). */
     @Enumerated(EnumType.STRING)
@@ -68,6 +68,6 @@ public class ProjectEntity {
 
     /** プロジェクトメンバー情報一覧. */
     @ManyToMany
-    @JoinTable(name = "project_members", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "engineer_id"))
+    @JoinTable(name = "project_engineers", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "engineer_id"))
     private List<EngineerEntity> members;
 }

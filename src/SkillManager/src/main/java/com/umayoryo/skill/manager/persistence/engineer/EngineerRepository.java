@@ -17,6 +17,6 @@ import com.umayoryo.skill.manager.persistence.engineer.entity.EngineerEntity;
 @Repository
 @Transactional
 public interface EngineerRepository
-        extends JpaRepository<EngineerEntity, Integer>, JpaSpecificationExecutor<EngineerEntity> {
+        extends JpaRepository<EngineerEntity, Long>, JpaSpecificationExecutor<EngineerEntity> {
 
 }

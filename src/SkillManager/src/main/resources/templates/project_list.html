@@ -28,8 +28,9 @@
 								<div class="card-body">
 									<div class="form-group col-6">
 										<label for="">プロジェクト名</label>
-										<input type="text" th:value="${param.name}" class="w-100 form-control"
-											name="name" id="name" placeholder="プロジェクト名を入力してください">
+										<input type="text" th:field="*{projectSearchForm.name}"
+											class="w-100 form-control" name="name" id="name"
+											placeholder="プロジェクト名を入力してください">
 									</div>
 								</div>
 								<div class="card-footer">
@@ -66,8 +67,8 @@
 										<td th:text="${project.projectId}"></td>
 										<td th:text="${project.projectName}"></td>
 										<td class="text-center">
-											<button type="button" class="btn btn-primary btn-sm">編集</button>
-											<button type="button" class="btn btn-danger btn-sm">削除</button>
+											<a th:href="@{/project/detail(id=${project.projectId})}"
+												class="btn btn-primary btn-sm">詳細</a>
 										</td>
 									</tr>
 								</tbody>

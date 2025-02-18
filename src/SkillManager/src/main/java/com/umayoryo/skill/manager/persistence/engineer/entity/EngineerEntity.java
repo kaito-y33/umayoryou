@@ -27,7 +27,7 @@ public class EngineerEntity {
     /** エンジニアID（主キー）. */
     @Id
     @Column(name = "engineer_id")
-    private long engineerId;
+    private Long engineerId;
 
     /** エンジニア名. */
     @Column(name = "engineer_name")
@@ -42,7 +42,7 @@ public class EngineerEntity {
     @JoinColumn(name = "engineer_id")
     private List<EngineerSkillEntity> engineerSkillList;
 
-    /** エンジニア関連プロジェクトのリスト.x	 */
+    /** エンジニア関連プロジェクトのリスト.x */
     @ManyToMany(mappedBy = "members")
     private List<ProjectEntity> projects;
 }
