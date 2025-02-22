@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.umayoryo.skill.manager.common.enums.ProjectStatus;
 import com.umayoryo.skill.manager.common.form.ProjectForm;
@@ -148,10 +149,29 @@ public class ProjectController {
      * @return プロジェクト一覧画面
      */
     @PostMapping("/store")
-    public String store(@ModelAttribute ProjectForm projectForm, Model model) {
+    public String store(@ModelAttribute ProjectForm projectForm, RedirectAttributes redirectAttributes) {
 
         // プロジェクト情報の保存処理
         projectService.registerProject(ProjectForm.convert(projectForm));
+
+        redirectAttributes.addFlashAttribute("message", "プロジェクト情報の保存が完了しました。");
+
+        return "redirect:/project";
+    }
+
+    /**
+     * 削除ボタン押下時処理.
+     * 
+     * @param projectId プロジェクトID
+     * @param model     Model
+     * @return 一覧画面
+     */
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") Long projectId, RedirectAttributes redirectAttributes) {
+
+        projectService.deleteProject(projectId);
+
+        redirectAttributes.addFlashAttribute("message", "プロジェクト情報の削除が完了しました。");
 
         return "redirect:/project";
     }

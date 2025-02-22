@@ -85,6 +85,7 @@ public class ProjectServiceImpl implements ProjectService {
      * 
      * @param bean プロジェクトBean
      */
+    @Override
     public void registerProject(ProjectBean bean) {
 
         // 紐づくエンジニア情報一覧を取得
@@ -95,5 +96,17 @@ public class ProjectServiceImpl implements ProjectService {
 
         // プロジェクト情報登録
         projectRepository.save(entity);
+    }
+
+    /**
+     * プロジェクト情報を削除する.
+     * 
+     * @param projectId プロジェクトID
+     */
+    @Override
+    public void deleteProject(Long projectId) {
+
+        // 対象プロジェクト情報の削除
+        projectRepository.deleteById(projectId);
     }
 }
