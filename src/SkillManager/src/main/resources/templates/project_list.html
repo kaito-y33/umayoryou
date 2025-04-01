@@ -28,7 +28,7 @@
 							<div class="card-header">
 								<h3 class="card-title">検索欄</h3>
 							</div>
-							<form th:action="@{/project/search}" method="post">
+							<form th:action="@{/project}" method="get">
 								<div class="card-body">
 									<div class="form-group col-6">
 										<label for="">プロジェクト名</label>
@@ -87,7 +87,7 @@
 				</div>
 				<br>
 				<br>
-				<a class="btn btn-primary float-right" href="/project/register">
+				<a class="btn btn-primary float-right" href="/project/add">
 					新規登録
 				</a>
 			</div>

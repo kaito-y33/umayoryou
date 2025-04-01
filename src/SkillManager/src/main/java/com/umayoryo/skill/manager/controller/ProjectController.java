@@ -54,33 +54,11 @@ public class ProjectController {
             Model model) {
 
         // 検索実施済み判定
-        Boolean searched = (Boolean) session.getAttribute("searched");
-        if (Boolean.TRUE.equals(searched)) {
+        if (projectSearchForm.hasSearchCriteria()) {
             // 検索実施
             List<ProjectBean> projects = projectService.searchProjects(projectSearchForm.getName());
             model.addAttribute("projects", projects);
         }
-
-        return ViewNames.PROJECT_LIST_VIEW;
-    }
-
-    /**
-     * プロジェクト一覧画面 検索ボタン押下時処理
-     * 
-     * @param name  プロジェクト名
-     * @param model model
-     * @return プロジェクト一覧画面
-     */
-    @PostMapping("/search")
-    public String search(@ModelAttribute("projectSearchForm") ProjectSearchForm projectSearchForm, HttpSession session,
-            Model model) {
-
-        // 検索実行フラグON
-        session.setAttribute("searched", true);
-
-        // 検索実施
-        List<ProjectBean> projects = projectService.searchProjects(projectSearchForm.getName());
-        model.addAttribute("projects", projects);
 
         return ViewNames.PROJECT_LIST_VIEW;
     }
@@ -108,7 +86,7 @@ public class ProjectController {
      * @param model model
      * @return プロジェクト登録新規画面
      */
-    @GetMapping("/register")
+    @GetMapping("/add")
     public String register(Model model) {
 
         // メンバー追加用にエンジニア一覧を取得
