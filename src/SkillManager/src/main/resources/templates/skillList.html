@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/layout::layout(~{::body/content()})}">
+
+<body id="main">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">スキル一覧</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Project</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                <div>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h4 class="m-0">登録内容</h1>
+                        </div>
+                    </div>
+                    <hr style="border-top: 1px solid purple;">
+
+                    <!-- スキル一覧 -->
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>種別</th>
+                                        <th>名前</th>
+                                        <th>経験年数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="skill: ${skillList}">
+                                        <td th:text="${skill.type}"></td>
+                                        <td th:text="${skill.name}"></td>
+                                        <td th:text="${skill.level}年"></td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary btn-sm">編集</button>
+                                            <button type="button" class="btn btn-danger btn-sm">削除</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

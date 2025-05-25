@@ -16,4 +16,7 @@ public class ViewNames {
 
     /** プロジェクト保存内容確認画面. */
     public static final String PROJECT_CONFIRM_VIEW = "project_confirm";
+
+    /** スキル一覧画面. */
+    public static final String SKILL_LIST_VIEW = "skillList";
 }
